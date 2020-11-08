@@ -1,0 +1,10 @@
+﻿version: '3.7'
+
+services:
+  api:
+    container_name: vrscraper_api
+    build: .
+    ports:
+    - ${VRScraper_ApiPort}:5000
+    environment:
+      VRScraper_ApiPort: "${VRScraper_ApiPort}"

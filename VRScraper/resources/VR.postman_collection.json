@@ -1,0 +1,184 @@
+{
+	"info": {
+		"_postman_id": "a0baf7c8-b146-428d-aa5f-d3fc6e2d3fd5",
+		"name": "VRScraper",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ScrapeSololeveling",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ScrapeInstructions\": [\r\n        {\r\n            \"MediaName\": \"sololeveling\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5005/api/scrape",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"scrape"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ScrapeTalesOfDemonsAndGods",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ScrapeInstructions\": [\r\n        {\r\n            \"MediaName\": \"talesofdemonsandgods\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5005/api/scrape",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"scrape"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ScrapeMartialPeak",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ScrapeInstructions\": [\r\n        {\r\n            \"MediaName\": \"martialpeak\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5005/api/scrape",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"scrape"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ScrapeJujutsuKaisen",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ScrapeInstructions\": [\r\n        {\r\n            \"MediaName\": \"jujutsukaisen\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5005/api/scrape",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"scrape"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ScrapeMultiple",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ScrapeInstructions\": [\r\n        {\r\n            \"MediaName\": \"sololeveling\"\r\n        },\r\n        {\r\n            \"MediaName\": \"talesofdemonsandgods\"\r\n        },\r\n        {\r\n            \"MediaName\": \"martialpeak\"\r\n        },\r\n        {\r\n            \"MediaName\": \"jujutsukaisen\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5005/api/scrape",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"scrape"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ScrapeMultipleSomeFail",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ScrapeInstructions\": [\r\n        {\r\n            \"MediaName\": \"sololeveling\"\r\n        },\r\n        {\r\n            \"MediaName\": \"doesNotExist\"\r\n        },\r\n        {\r\n            \"MediaName\": \"doesNotExist2\"\r\n        },\r\n        {\r\n            \"MediaName\": \"jujutsukaisen\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5005/api/scrape",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"scrape"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

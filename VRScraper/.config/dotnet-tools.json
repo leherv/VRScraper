@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "playwright-sharp-tool": {
+      "version": "0.152.0",
+      "commands": [
+        "playwright-sharp"
+      ]
+    }
+  }
+}
