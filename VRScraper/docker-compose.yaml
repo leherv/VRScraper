@@ -8,3 +8,9 @@ services:
     - ${VRScraper_ApiPort}:5000
     environment:
       VRScraper_ApiPort: "${VRScraper_ApiPort}"
+    networks:
+      - vr
+
+networks:
+  vr:
+    name: custom_vr
