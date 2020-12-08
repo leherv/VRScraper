@@ -3,7 +3,7 @@
   "isRoot": true,
   "tools": {
     "playwright-sharp-tool": {
-      "version": "0.152.0",
+      "version": "0.162.0",
       "commands": [
         "playwright-sharp"
       ]
