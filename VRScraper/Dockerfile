@@ -7,11 +7,6 @@ RUN dotnet restore
 
 # Copy everything else and build
 COPY . ./
-WORKDIR /app/VRScraper
-# download playwright-sharp-tool
-RUN dotnet tool restore
-# download the browsers using the playwright-sharp-tool we restored
-RUN dotnet playwright-sharp install-browsers
 WORKDIR /app
 RUN dotnet publish -c Release -o out
 
