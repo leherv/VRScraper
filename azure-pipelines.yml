@@ -22,7 +22,7 @@ stages:
         dockerRegistryEndpoint: 'DockerHub'
         dockerComposeFile: '**/docker-compose.yaml'
         dockerComposeFileArgs: 'VRScraper_ApiPort=5005'
-        action: 'Push services'
+        action: 'Build services'
     - task: AzureWebAppContainer@1
       inputs:
         azureSubscription: 'Azure for Students(0238d96c-7a79-484f-a2af-2a1bab330d0f)'
