@@ -20,11 +20,11 @@ stages:
       inputs:
         containerregistrytype: 'Container Registry'
         dockerRegistryEndpoint: 'DockerHub'
-        dockerComposeFile: '**/docker-compose.yml'
+        dockerComposeFile: '**/docker-compose.yaml'
         action: 'Build services'
     - task: AzureWebAppContainer@1
       inputs:
         azureSubscription: 'Azure for Students(0238d96c-7a79-484f-a2af-2a1bab330d0f)'
         appName: 'vrscraper'
         containers: 'leherv/vrscraper'
-        multicontainerConfigFile: '**/docker-compose.yml'
+        multicontainerConfigFile: '**/docker-compose.yaml'
