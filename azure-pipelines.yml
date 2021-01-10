@@ -20,7 +20,7 @@ stages:
       inputs:
         containerregistrytype: 'Container Registry'
         dockerRegistryEndpoint: 'DockerHub'
-        dockerComposeFile: '**/docker-compose.yml'
+        dockerComposeFile: '**/docker-compose.yaml'
         dockerComposeFileArgs: 'VRScraper_ApiPort=5005'
         action: 'Push services'
     - task: AzureWebAppContainer@1
