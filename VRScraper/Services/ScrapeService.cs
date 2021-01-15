@@ -38,7 +38,7 @@ namespace VRScraper.Services
             try
             {
                 await new BrowserFetcher().DownloadAsync(BrowserFetcher.DefaultRevision);
-                await using var browser = await Puppeteer.LaunchAsync(new LaunchOptions {Headless = true});
+                await using var browser = await Puppeteer.LaunchAsync(new LaunchOptions {Headless = true, Args = new []{"--no-sandbox"}});
                 var page = await browser.NewPageAsync();
                 await page.GoToAsync(url);
                 var container = await page.WaitForSelectorAsync("div.panel-story-chapter-list",
