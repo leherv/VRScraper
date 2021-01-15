@@ -4,14 +4,14 @@ using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using PlaywrightSharp;
+using PuppeteerSharp;
 using VRScraper.BO;
 
 namespace VRScraper.Services
 {
     [ApiController]
     [Route("api/release")]
-    public class ScrapeService: IScrapeService
+    public class ScrapeService : IScrapeService
     {
         private readonly ILogger<ScrapeService> _logger;
 
@@ -37,15 +37,17 @@ namespace VRScraper.Services
         {
             try
             {
-                using var playwright = await Playwright.CreateAsync();
-                await using var browser = await playwright.Chromium.LaunchAsync(new LaunchOptions {Headless = true});
+                await new BrowserFetcher().DownloadAsync(BrowserFetcher.DefaultRevision);
+                await using var browser = await Puppeteer.LaunchAsync(new LaunchOptions {Headless = true});
                 var page = await browser.NewPageAsync();
                 await page.GoToAsync(url);
-                var container = await page.WaitForSelectorAsync("div.panel-story-chapter-list", WaitForState.Visible);
+                var container = await page.WaitForSelectorAsync("div.panel-story-chapter-list",
+                    new WaitForSelectorOptions {Visible = true});
                 var chapters = await container.QuerySelectorAsync("ul.row-content-chapter");
                 var newestChapter = await chapters.QuerySelectorAsync("li.a-h");
                 var newestLink = await newestChapter.QuerySelectorAsync("a");
-                var chapterUrl = await newestLink.GetAttributeAsync("href");
+                var chapterUrlHandle = await newestLink.GetPropertyAsync("href");
+                var chapterUrl = (string) await chapterUrlHandle.JsonValueAsync();
                 var regexResult = Regex.Match(chapterUrl, @"chapter_(\d{1,4})\.*(\d{0,4})");
                 var releaseNumberString = regexResult.Groups[1].Value;
                 var subReleaseNumberString = regexResult.Groups[2].Value;

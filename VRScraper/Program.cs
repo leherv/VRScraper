@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using PlaywrightSharp;
 
 namespace VRScraper
 {
@@ -9,7 +8,6 @@ namespace VRScraper
     {
         public static void Main(string[] args)
         {
-            Playwright.InstallAsync();
             CreateHostBuilder(args).Build().Run();
         }
 
