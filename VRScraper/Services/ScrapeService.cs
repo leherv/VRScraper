@@ -37,6 +37,7 @@ namespace VRScraper.Services
         {
             try
             {
+                _logger.LogInformation($"Starting scraping for media {mediaName}...");
                 await new BrowserFetcher().DownloadAsync(BrowserFetcher.DefaultRevision);
                 await using var browser = await Puppeteer.LaunchAsync(new LaunchOptions {Headless = true, Args = new []{"--no-sandbox"}});
                 var page = await browser.NewPageAsync();
@@ -65,6 +66,7 @@ namespace VRScraper.Services
                         return Result.Failure<ScrapeResult>($"SubReleaseNumber could not be extracted from link {chapterUrl} for media {mediaName}");
                     }
                 }
+                _logger.LogInformation($"Successfully scraped for media {mediaName}");
                 return Result.Success(new ScrapeResult
                 {
                     MediaName = mediaName,

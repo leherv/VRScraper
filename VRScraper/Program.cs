@@ -13,7 +13,7 @@ namespace VRScraper
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration((context, config) => config.AddEnvironmentVariables("VRScraper_"))
+                .ConfigureAppConfiguration((context, config) => config.AddEnvironmentVariables("VRSCRAPER_"))
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }
 }
