@@ -5,7 +5,7 @@
       "commandName": "Project",
       "applicationUrl": "http://localhost:5005",
       "environmentVariables": {
-        "VRScraper_ApiPort": "5005"
+        "VRSCRAPER_APIPORT": "5005"
       }
     }
   }

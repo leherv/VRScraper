@@ -5,9 +5,9 @@ services:
     container_name: vrscraper_api
     build: .
     ports:
-    - ${VRScraper_ApiPort}:5000
+    - ${VRSCRAPER_APIPORT}:5000
     environment:
-      VRScraper_ApiPort: "${VRScraper_ApiPort}"
+      VRSCRAPER_APIPORT: "${VRSCRAPER_APIPORT}"
     networks:
       - vr
 
