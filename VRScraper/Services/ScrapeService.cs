@@ -15,6 +15,12 @@ namespace VRScraper.Services
     {
         private readonly ILogger<ScrapeService> _logger;
 
+        private readonly LaunchOptions _launchOptions = new LaunchOptions
+        {
+            Headless = true,
+            Args = new[] {"--no-sandbox"}
+        };
+
         public ScrapeService(ILogger<ScrapeService> logger)
         {
             _logger = logger;
@@ -38,9 +44,9 @@ namespace VRScraper.Services
             try
             {
                 _logger.LogInformation($"Starting scraping for media {mediaName}...");
-                await new BrowserFetcher().DownloadAsync(BrowserFetcher.DefaultRevision);
-                await using var browser = await Puppeteer.LaunchAsync(new LaunchOptions {Headless = true, Args = new []{"--no-sandbox"}});
+                await using var browser = await Puppeteer.LaunchAsync(_launchOptions);
                 var page = await browser.NewPageAsync();
+                page.DefaultTimeout = 50000;
                 await page.GoToAsync(url);
                 var container = await page.WaitForSelectorAsync("div.panel-story-chapter-list",
                     new WaitForSelectorOptions {Visible = true});
