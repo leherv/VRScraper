@@ -45,7 +45,7 @@ namespace VRScraper.Services
             {
                 _logger.LogInformation($"Starting scraping for media {mediaName}...");
                 await using var browser = await Puppeteer.LaunchAsync(_launchOptions);
-                var page = await browser.NewPageAsync();
+                await using var page = await browser.NewPageAsync();
                 page.DefaultTimeout = 50000;
                 await page.GoToAsync(url);
                 var container = await page.WaitForSelectorAsync("div.panel-story-chapter-list",
