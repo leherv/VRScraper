@@ -52,14 +52,10 @@ namespace VRScraper.Services
                 await page.GoToAsync(url);
                 var container = await page.WaitForSelectorAsync("div.panel-story-chapter-list",
                     new WaitForSelectorOptions {Visible = true});
-                var chapters = await container.QuerySelectorAsync("ul.row-content-chapter");
-                var newestChapter = await chapters.QuerySelectorAsync("li.a-h");
-                var newestLink = await newestChapter.QuerySelectorAsync("a");
-                var chapterUrlHandle = await newestLink.GetPropertyAsync("href");
-                var chapterUrl = (string) await chapterUrlHandle.JsonValueAsync();
-                var regexResult = Regex.Match(chapterUrl, @"chapter_(\d{1,4})\.*(\d{0,4})");
-                var releaseNumberString = regexResult.Groups[1].Value;
-                var subReleaseNumberString = regexResult.Groups[2].Value;
+                const string getChapter = @"let chapterUrl = document.querySelector('div.panel-story-chapter-list > ul.row-content-chapter > li.a-h > a').href; let regexMatch = chapterUrl.match('chapter_(\\d{1,4})\\.*(\\d{0,4})'); [regexMatch[1], regexMatch[2], chapterUrl];";
+                var results = await page.EvaluateExpressionAsync<string[]>(getChapter);
+                var (releaseNumberString, subReleaseNumberString, chapterUrl) = (results[0], results[1], results[2]);
+                _logger.LogInformation("Scraping site with results: releaseNumber: {releaseNumber}, subReleaseNumber: {subReleaseNumber}, chapterUrl: {chapterUrl}", releaseNumberString, subReleaseNumberString, chapterUrl);
                 if (!int.TryParse(releaseNumberString, out var releaseNumber))
                 {
                     _logger.LogError("Releasenumber could not be extracted from link {chapterUrl} for media {mediaName}", chapterUrl, mediaName);
