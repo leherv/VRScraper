@@ -34,6 +34,8 @@ namespace VRScraper.Services
                 "talesofdemonsandgods" => await ScrapeManganelo("https://manganelo.com/manga/hyer5231574354229", scrapeInstruction.MediaName.ToLower()),
                 "martialpeak" => await ScrapeManganelo("https://manganelo.com/manga/martial_peak", scrapeInstruction.MediaName.ToLower()),
                 "jujutsukaisen" => await ScrapeManganelo("https://manganelo.com/manga/jujutsu_kaisen", scrapeInstruction.MediaName.ToLower()),
+                "skeletonsoldier" => await ScrapeManganelo("https://manganelo.com/manga/upzw279201556843676", scrapeInstruction.MediaName.ToLower()),
+                "drstone" => await ScrapeManganelo("https://manganelo.com/manga/dr_stone", scrapeInstruction.MediaName.ToLower()),
                 _ => Result.Failure<ScrapeResult>($"No scraper set up for media with name {scrapeInstruction.MediaName}")
             };
             return result;
