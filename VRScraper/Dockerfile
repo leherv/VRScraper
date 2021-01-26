@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y libwoff1 \
     libxslt1.1 \
     libevent-2.1-6 \
     libgles2 \
-    libvpx5
+    libvpx5 
 # Install Chromium dependencies
 RUN apt-get update && apt-get install -y libnss3 \
     libxss1 \
@@ -36,10 +36,13 @@ RUN apt-get update && apt-get install -y libnss3 \
 # Install Firefox dependencies
 RUN apt-get update && apt-get install -y libdbus-glib-1-2 \
     libxt6
+# Install dumb-init
+RUN apt-get install -y dumb-init
 WORKDIR /root
 RUN mkdir .cache
 # copy the browser binaries we downloaded into the build-env with playwright sharp into the runtime-env
 COPY --from=build-env /root/.cache/ ./.cache/
 WORKDIR /app
 COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "VRScraper.dll", "--urls", "http://0.0.0.0:5000"]
+ENTRYPOINT ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+CMD ["dotnet", "VRScraper.dll", "--urls", "http://0.0.0.0:5000"]
