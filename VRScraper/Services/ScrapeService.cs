@@ -17,7 +17,6 @@ namespace VRScraper.Services
         private readonly LaunchOptions _launchOptions = new LaunchOptions
         {
             Headless = true,
-            ExecutablePath = "/usr/bin/chromium",
             Args = new[] {"--no-sandbox"}
         };
 

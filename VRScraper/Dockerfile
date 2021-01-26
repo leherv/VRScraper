@@ -13,20 +13,15 @@ RUN dotnet publish -c Release -o out
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 
-#####################
-#PUPPETEER RECIPE
-#####################
-# Install latest chrome dev package and fonts to support major charsets (Chinese, Japanese, Arabic, Hebrew, Thai and a few others)
-# Note: this installs the necessary libs to make the bundled version of Chromium that Puppeteer
-# installs, work.
-RUN apt-get update && apt-get -f install && apt-get -y install wget gnupg2 apt-utils
+# install chromium and some dependencies as well as dumb-init (to avoid zombie-processes, see: https://github.com/Yelp/dumb-init and https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/)
+RUN apt-get update && apt-get -f install && apt-get -y install dumb-init wget gnupg2 apt-utils
 RUN apt-get install -y chromium fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst \
       --no-install-recommends
-#####################
-#END PUPPETEER RECIPE
-#####################
+# set path to chromium executable
 ENV PUPPETEER_EXECUTABLE_PATH "/usr/bin/chromium"
 
 WORKDIR /app
 COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "VRScraper.dll", "--urls", "http://0.0.0.0:5000"]
+# prepend the dotnet call with dumb-init
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+CMD ["dotnet", "VRScraper.dll", "--urls", "http://0.0.0.0:5000"]
