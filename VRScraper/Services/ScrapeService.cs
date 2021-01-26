@@ -72,7 +72,7 @@ namespace VRScraper.Services
                 }
                 _logger.LogInformation($"Successfully scraped for media {mediaName}");
                 var pages = await browser.PagesAsync();
-                _logger.LogInformation("There are still {pagesAmount} pages open. Trying to close them...");
+                _logger.LogInformation("There are still {pagesAmount} pages open. Trying to close them...", pages.Length.ToString());
                 foreach (var p in pages)
                 {
                     await p.CloseAsync();
