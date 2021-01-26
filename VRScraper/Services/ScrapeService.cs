@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +17,7 @@ namespace VRScraper.Services
         private readonly LaunchOptions _launchOptions = new LaunchOptions
         {
             Headless = true,
+            ExecutablePath = "/usr/bin/chromium",
             Args = new[] {"--no-sandbox"}
         };
 
