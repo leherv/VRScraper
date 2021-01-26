@@ -18,7 +18,13 @@ namespace VRScraper.Services
         {
             Headless = true,
             ExecutablePath = "/usr/bin/chromium",
-            Args = new[] {"--no-sandbox"}
+            Args = new[] {
+                "--headless",
+                "--no-sandbox",
+                "--disable-gpu",
+                "--single-process",
+                "--no-zygote"
+            }
         };
 
         public ScrapeService(ILogger<ScrapeService> logger)
