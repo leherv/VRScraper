@@ -52,9 +52,7 @@ namespace VRScraper.Services
                 await page.GoToAsync(url);
                 var container = await page.WaitForSelectorAsync("div.panel-story-chapter-list",
                     new WaitForSelectorOptions {Visible = true});
-                var chapters = await container.QuerySelectorAsync("ul.row-content-chapter");
-                var newestChapter = await chapters.QuerySelectorAsync("li.a-h");
-                var newestLink = await newestChapter.QuerySelectorAsync("a");
+                var newestLink = await container.QuerySelectorAsync("ul.row-content-chapter > li.a-h > a");
                 var chapterUrlHandle = await newestLink.GetPropertyAsync("href");
                 var chapterUrl = (string) await chapterUrlHandle.JsonValueAsync();
                 var regexResult = Regex.Match(chapterUrl, @"chapter_(\d{1,4})\.*(\d{0,4})");
