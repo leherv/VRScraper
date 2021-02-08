@@ -18,7 +18,11 @@ namespace VRScraper.Services
         private readonly LaunchOptions _launchOptions = new LaunchOptions
         {
             Headless = true,
-            Args = new[] {"--no-sandbox"}
+            ExecutablePath = "/usr/bin/chromium",
+            Args = new[] {
+                "--headless",
+                "--no-sandbox"
+            }
         };
 
         public ScrapeService(ILogger<ScrapeService> logger)
